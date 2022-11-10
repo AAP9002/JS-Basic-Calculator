@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Guide</title>
+    <script>
+        function enter_Username(){
+            var username = prompt("Enter your name:");
+            alert ("Hello " + username);
+        }
+
+        function Calculate(op){
+            var num1 = document.getElementById("number1").value;
+            var num2 = document.getElementById("number2").value;
+            if (op == '+'){
+                document.getElementById("addresult").innerText = Number(num1) + Number(num2);
+            }
+            else if (op =='*'){
+                document.getElementById("addresult").innerText = Number(num1) * Number(num2);
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <h2>JavaScript Guide</h2>
+    <hr>
+    <p>Enter your name through prompt, then an alert message will say hello.</p>
+    <button onclick="enter_Username()">Enter Username</button>
+    <hr>
+    <p>Calculate 2 numbers</p>
+    <label>Number 1</label>
+    <input type="number" id="number1" placeholder="Number 1">
+    <label>Number 2</label>
+    <input type="number" id="number2" placeholder="Number 2">
+    <button onclick="Calculate('+')">ADD</button>
+    <button onclick="Calculate('*')">MULTIPLY</button>
+    <p>Result: <b id = "addresult"></b></p>
+</body>
+</html>
