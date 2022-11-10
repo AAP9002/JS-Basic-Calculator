@@ -4,39 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JS Guide</title>
+    <title>JS Calculator</title>
     <script>
-        function enter_Username(){
-            var username = prompt("Enter your name:");
-            alert ("Hello " + username);
+        document.write("<div id = 'calculator'>");
+        document.write("<input type='text' id='theDisplay'></input><button onclick='clearAll()'>CA</button><br/>");
+        numbers = ["7","8","9","+","4","5","6","-","1","2","3","/",".","0","=","*"]
+        for (var i = 0; i<numbers.length ; i++)
+        {
+            if(numbers[i] == '=')
+            {
+                document.write("<button onclick='sumAnswer()'>"+numbers[i]+"</button>");
+            }
+            else{
+                document.write("<button onclick='update_Display(&quot;"+numbers[i]+"&quot;)'>"+numbers[i]+"</button>");
+            }
+            if(i%4 == 3)
+            {
+                document.write("<br/>")
+            }
         }
 
-        function Calculate(op){
-            var num1 = document.getElementById("number1").value;
-            var num2 = document.getElementById("number2").value;
-            if (op == '+'){
-                document.getElementById("addresult").innerText = Number(num1) + Number(num2);
-            }
-            else if (op =='*'){
-                document.getElementById("addresult").innerText = Number(num1) * Number(num2);
-            }
+        document.write("</div>")
+
+        function update_Display(num)
+        {
+            curVal = document.getElementById("theDisplay").value;
+            curVal += num;
+            document.getElementById("theDisplay").value = curVal;
         }
 
+        function sumAnswer()
+        {
+            curVal = document.getElementById("theDisplay").value;
+            curVal = eval(curVal)
+            document.getElementById("theDisplay").value = curVal;
+        }
+
+        function clearAll()
+        {
+            document.getElementById("theDisplay").value = "";
+        }
     </script>
+
+    <style>
+        body {
+            margin:  0px;
+            width: 100vw;
+            height: 100vh;
+            background-image: linear-gradient(to right, red , yellow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #calculator {
+            width: fit-content;
+            height: fit-content;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: lightskyblue;
+            opacity: 90%;
+        }
+
+        button {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        input{
+            width:140px;
+            height: 40px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <h2>JavaScript Guide</h2>
-    <hr>
-    <p>Enter your name through prompt, then an alert message will say hello.</p>
-    <button onclick="enter_Username()">Enter Username</button>
-    <hr>
-    <p>Calculate 2 numbers</p>
-    <label>Number 1</label>
-    <input type="number" id="number1" placeholder="Number 1">
-    <label>Number 2</label>
-    <input type="number" id="number2" placeholder="Number 2">
-    <button onclick="Calculate('+')">ADD</button>
-    <button onclick="Calculate('*')">MULTIPLY</button>
-    <p>Result: <b id = "addresult"></b></p>
+
 </body>
 </html>
